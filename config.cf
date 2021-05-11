@@ -1,0 +1,14 @@
+### Vars
+###
+###
+logpath="/var/log/rsync"
+copyfolder="$path/folder.cf"
+copyfiles="$path/files.cf"
+excludefile="$path/exclude.cf"
+date=`date +%s`
+
+### Settings
+###
+### 
+host="XXX"
+active="true"

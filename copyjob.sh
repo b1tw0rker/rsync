@@ -8,24 +8,12 @@
 ###
 ###
 
-
-
-### Vars
-###
-###
 script=$(readlink -f $0)
 path=`dirname $script`
-logpath="/var/log/rsync"
-copyfolder="$path/folder.cf"
-copyfiles="$path/files.cf"
-excludefile="$path/exclude.cf"
-date=`date +%s`
+source $path/config.cf
 
-###
-###
-###
-host="XXX"
-active="false"
+
+
 
 
 ### check
@@ -48,8 +36,9 @@ if [ ! -e "$logpath" ]; then
 fi
 
 if [ $host = "XXX" ]; then
-   echo "Missing Target Server"
-   exit
+    printf "\n\n***********************************************\n\nAdd Your BackupServer (FQDN) to config.cf: "
+    read u_srv
+    sed -i 's/^host="XXX"/host="'"$u_srv"'"/' config.cf
 fi
 
 

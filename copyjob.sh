@@ -39,6 +39,7 @@ if [ $host = "XXX" ]; then
     printf "\n\n***********************************************\n\nAdd Your BackupServer (FQDN) to config.cf: "
     read u_srv
     sed -i 's/^host="XXX"/host="'"$u_srv"'"/' config.cf
+    source $path/config.cf
 fi
 
 

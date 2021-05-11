@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Version: 1.0.76
+### Version: 1.0.1
 ### Build date: 11.05.2021
 ### (C) 2021 by Dipl. Wirt.-Ing. Nick Herrmann
 ### This program is WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,9 +19,13 @@ logpath="/var/log/rsync"
 copyfolder="$path/folder.cf"
 copyfiles="$path/files.cf"
 excludefile="$path/exclude.cf"
+date=`date +%s`
+
+###
+###
+###
 host="XXX"
 active="false"
-date=`date +%s`
 
 
 ### check
@@ -43,6 +47,12 @@ if [ ! -e "$logpath" ]; then
    mkdir /var/log/rsync
 fi
 
+if [ $host = "XXX" ]; then
+   echo "Missing Target Server"
+   exit
+fi
+
+
 
 ### get exclude list
 ###
@@ -59,7 +69,7 @@ done
 
 
 
-### get copy list
+### get folders to copy
 ###
 ###
 no=0
@@ -74,6 +84,18 @@ for i in `cat $copyfolder`; do
   ###
   ###
   f="${i:0:1}"
+
+
+  ### check if last character is an /
+  ###
+  ###
+  if [ "$f" = "/" ]; then
+    if [[ $i  =~ [^/]$ ]] ; then   ## determines id ending slash in missing
+       echo "Missing ending slash for: $i"
+       exit
+    fi
+  fi
+
 
   ### cut last character ( cut / )
   ###

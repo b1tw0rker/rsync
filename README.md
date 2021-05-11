@@ -9,7 +9,7 @@ THIS SCRIPT IS ABSOLUTE BETA STUFF. DO NOT USE IT ON PRODUCTION SYSTEMS
 This program is WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Start the script with running the followinf command:
+Start the script with running the following command on your shell:
 
 ```bash
 ./copyjob.sh

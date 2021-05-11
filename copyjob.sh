@@ -112,13 +112,11 @@ for i in `cat $copyfolder`; do
   if [ "$active" = "true" ]; then
 
    if [ "$target" != "" ] && [ "$local" != "" ] && [ -e $local ] && [ "$host" != "" ]; then
-      #rsync -avz $exclude --delete $local $host:$target --log-file=/var/log/rsync/rsync-$no.log
       rsync -avz $exclude --delete $local $host:$target  --info=ALL >> $logpath/rsync-$date.log
    fi
 
   else
 
-    #echo "rsync -avz $exclude --delete $local $host:$target --log-file=$logpath/rsync-$no.log"
     echo "rsync -avz $exclude --delete $local $host:$target --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
   fi
 
@@ -164,13 +162,11 @@ for i in `cat $copyfiles`; do
   if [ "$active" = "true" ]; then
 
    if [ "$target" != "" ] && [ "$local" != "" ] && [ -e $local ] && [ "$host" != "" ]; then
-      #rsync -avz $exclude --delete $local $host:$target --log-file=/var/log/rsync/rsync-$no.log
       rsync -avz $exclude --delete $local $host:$target  --info=ALL >> $logpath/rsync-$date.log
    fi
 
   else
 
-    #echo "rsync -avz $exclude --delete $local $host:$target --log-file=$logpath/rsync-$no.log"
     echo "rsync -avz $exclude --delete $local $host:$target --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
 
   fi

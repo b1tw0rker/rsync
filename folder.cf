@@ -7,5 +7,5 @@
 /etc/vsftpd/
 /etc/postfix/
 /etc/dovecot/
-/etc/fail2ban
+/etc/fail2ban/
 /etc/httpd/conf/

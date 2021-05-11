@@ -19,7 +19,7 @@ Start the script with running the following command on your shell:
 Change the config files: exclude.cf, files.cf, folder.cf to your personal needs
 
 ```bash
-exclude.cf -> insert files which should NOT be copied.
+exclude.cf -> insert files ord folders which should NOT be copied.
 ```
 
 ```bash

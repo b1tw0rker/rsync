@@ -1,0 +1,7 @@
+###files-requires-NO-ending-slash-ACHTUNG-DO-NOT-USE-FUCKING-SPACE
+/etc/motd
+/etc/crontab
+/etc/passwd
+/etc/shadow
+/etc/pam.d/vsftpd
+/etc/cron.daily/webalizer*

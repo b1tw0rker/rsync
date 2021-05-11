@@ -1,14 +1,25 @@
 #!/bin/bash
 
+### Version: 1.0.76
+### Build date: 11.05.2021
+### (C) 2021 by Dipl. Wirt.-Ing. Nick Herrmann
+### This program is WITHOUT ANY WARRANTY; without even the implied warranty of
+### MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+###
+###
+
+
+
 ### Vars
 ###
 ###
 script=$(readlink -f $0)
 path=`dirname $script`
 logpath="/var/log/rsync"
-copyfile="$path/list.cf"
+copyfolder="$path/folder.cf"
+copyfiles="$path/files.cf"
 excludefile="$path/exclude.cf"
-host="srv002.bit-worker.com"
+host="XXX"
 active="false"
 
 
@@ -16,7 +27,11 @@ active="false"
 ### check
 ###
 ###
-if [ ! -f "$copyfile" ]; then
+if [ ! -f "$copyfolder" ]; then
+   exit 0
+fi
+
+if [ ! -f "$copyfiles" ]; then
    exit 0
 fi
 
@@ -47,7 +62,7 @@ done
 ###
 ###
 no=0
-for i in `cat $copyfile`; do
+for i in `cat $copyfolder`; do
 
   ### chomp - the bash way :-)
   ###
@@ -94,12 +109,57 @@ done
 ### rsync for files only
 ###
 ###
-files="/etc/motd /etc/crontab /etc/passwd /etc/shadow /etc/pam.d/vsftpd /etc/cron.daily/webalizer*"
-target="/etc"
-if [ "$active" = "true" ]; then
-    rsync -avz $exclude --delete $files $host:$target --log-file=$logpath/rsync-files.log
+no=0
+for i in `cat $copyfiles`; do
+
+  ### chomp - the bash way :-)
+  ###
+  ###
+  i="${i//$'\r'/$'\n'}"
+
+  ### get first character
+  ###
+  ###
+  f="${i:0:1}"
+
+  ### cut last character ( cut / )
+  ###
+  ###
+  target=$i
+  local=$i
+
+
+ if [ "$f" = "/" ]; then
+
+  ### ACTION
+  ###
+  ###
+  if [ "$active" = "true" ]; then
+
+   if [ "$target" != "" ] && [ "$local" != "" ] && [ -e $local ] && [ "$host" != "" ]; then
+      rsync -avz $exclude --delete $local $host:$target --log-file=/var/log/rsync/rsync-$no.log
+   fi
+
   else
-    echo "rsync -avz $exclude --delete $files $host:$target --log-file=$logpath/rsync-files.log"
-fi
+
+    echo "rsync -avz $exclude --delete $local $host:$target --log-file=$logpath/rsync-$no.log"
+
+  fi
+
+ fi
+
+ 
+no=$((no+1))
+done
+
+
+
+
+
+
+
+
 
 exit 0
+
+

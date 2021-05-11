@@ -106,7 +106,6 @@ for i in `cat $copyfolder`; do
    fi
 
   else
-
     echo "rsync -avz $exclude --delete $local $host:$target --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
   fi
 
@@ -156,9 +155,7 @@ for i in `cat $copyfiles`; do
    fi
 
   else
-
     echo "rsync -avz $exclude --delete $local $host:$target --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
-
   fi
 
  fi
@@ -168,13 +165,4 @@ no=$((no+1))
 done
 
 
-
-
-
-
-
-
-
 exit 0
-
-

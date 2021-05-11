@@ -15,7 +15,7 @@ Start the script with running the following command on your shell:
 ./copyjob.sh
 ```
 
-Change the config files: exclude.cf, files.cf, folder,cf to your personal needs
+Change the config files: exclude.cf, files.cf, folder.cf to your personal needs
 
 That's it folks!
 

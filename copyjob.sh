@@ -109,7 +109,7 @@ done
 ### rsync for files only
 ###
 ###
-no=0
+no=$((no+1))
 for i in `cat $copyfiles`; do
 
   ### chomp - the bash way :-)

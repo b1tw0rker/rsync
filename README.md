@@ -38,7 +38,7 @@ files.cf -> insert files which should be copied.
 folder.cf -> insert folders which should be copied.
 ```
 
-That's it folks!
+That's it folks! Happy mirroring ;-)
 
 ## License
 [APACHE](https://www.apache.org/licenses/LICENSE-2.0)

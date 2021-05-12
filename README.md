@@ -10,6 +10,12 @@ THIS SCRIPT IS ABSOLUTE BETA STUFF. DO NOT USE IT ON PRODUCTION SYSTEMS
 This program is WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+## Installation
+
+```bash
+git clone https://github.com/b1tw0rker/rsync.git
+```
+
 Start the script with running the following command on your shell:
 
 ```bash

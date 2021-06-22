@@ -9,3 +9,6 @@
 /etc/dovecot/
 /etc/fail2ban/
 /etc/httpd/conf/
+/etc/letsencrypt/
+/etc/bitworker/
+/etc/php-fpm.d/

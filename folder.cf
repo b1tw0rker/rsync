@@ -12,3 +12,4 @@
 /etc/letsencrypt/
 /etc/bitworker/
 /etc/php-fpm.d/
+/etc/webmin/

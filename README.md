@@ -55,23 +55,23 @@ That's it folks! Happy mirroring ;-)
 
 ### v1.0.2 — 2026-05-08
 
-**Umbenennung Variablen (`copyjob.sh`)**
-- `host` → `target` — beschreibt den Backup-Server (in `config.cf` und `copyjob.sh`)
-- `target` → `remotepath` — beschreibt den Zielpfad auf dem Server
-- `local` → `sourcepath` — beschreibt den lokalen Quellpfad
+**Variable Renaming (`copyjob.sh`)**
+- `host` → `target` — describes the backup server (in `config.cf` and `copyjob.sh`)
+- `target` → `remotepath` — describes the destination path on the server
+- `local` → `sourcepath` — describes the local source path
 
-**Robustheit (`copyjob.sh`)**
-- `set -u` hinzugefügt — Skript bricht bei nicht-initialisierten Variablen ab
-- `mkdir` zu `mkdir -p "$logpath"` — nutzt Config-Variable, erstellt übergeordnete Verzeichnisse
-- `$target` korrekt in Anführungszeichen gesetzt
-- `exclude=""` explizit initialisiert
-- SSH-Verbindungstest vor Ausführung — bricht sauber ab wenn Server nicht erreichbar
-- Log-Rotation: Logs älter als 30 Tage werden automatisch gelöscht
-- rsync Exit-Code wird geprüft und bei Fehler ins Log geschrieben
+**Robustness (`copyjob.sh`)**
+- Added `set -u` — script aborts on uninitialized variables
+- Changed `mkdir` to `mkdir -p "$logpath"` — uses config variable, creates parent directories
+- `$target` properly quoted
+- `exclude=""` explicitly initialized
+- SSH connectivity check before execution — aborts cleanly if server is unreachable
+- Log rotation: logs older than 30 days are automatically deleted
+- rsync exit code is checked and written to log on failure
 
 **README.md**
-- Shields.io Badges hinzugefügt (Version, Last Commit, Lizenz)
-- Lizenz von APACHE auf MIT geändert
+- Added Shields.io badges (version, last commit, license)
+- Changed license from APACHE to MIT
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)

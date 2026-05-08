@@ -10,12 +10,26 @@
 
 set -u
 
-script=$(readlink -f $0)
-path=`dirname $script`
-source $path/config.cf
+script=$(readlink -f "$0")
+path=`dirname "$script"`
+config_file="$path/config.cf"
+source "$config_file"
 
 start_ts=$(date +%s)
 ssh_opts=(-o StrictHostKeyChecking=accept-new -o ConnectTimeout=5)
+output_mode="${output_mode:-silent}"
+
+run_rsync() {
+   local sourcepath=$1
+   local remotepath=$2
+
+   if [ "$output_mode" = "verbose" ]; then
+      rsync -avz -e "ssh ${ssh_opts[*]}" $exclude --delete "$sourcepath" "$target:$remotepath" --info=NAME2 2>&1 | tee -a "$log_file"
+      return ${PIPESTATUS[0]}
+   fi
+
+   rsync -avz -e "ssh ${ssh_opts[*]}" $exclude --delete "$sourcepath" "$target:$remotepath" --info=ALL >> "$log_file" 2>&1
+}
 
 format_duration() {
    local total_seconds=$1
@@ -49,11 +63,26 @@ if [ ! -e "$logpath" ]; then
    mkdir -p "$logpath"
 fi
 
+log_file="$logpath/rsync-$date.log"
+
+case "$output_mode" in
+   silent|verbose)
+      ;;
+   *)
+      echo "ERROR: output_mode must be silent or verbose in $config_file"
+      exit 1
+      ;;
+esac
+
 if [ "$target" = "XXX" ]; then
     printf "\n\n***********************************************\n\nAdd Your BackupServer (FQDN) to config.cf: "
     read u_srv
-    sed -i 's/^target="XXX"/target="'"$u_srv"'"/' config.cf
-    source $path/config.cf
+   sed -i 's/^target="XXX"/target="'"$u_srv"'"/' "$config_file"
+   source "$config_file"
+fi
+
+if [ "$active" != "true" ]; then
+   echo "DRY RUN: active=$active in $config_file - commands are only printed, nothing is copied."
 fi
 
 
@@ -134,13 +163,13 @@ for i in `cat $copyfolder`; do
   if [ "$active" = "true" ]; then
 
    if [ "$remotepath" != "" ] && [ "$sourcepath" != "" ] && [ -e $sourcepath ] && [ "$target" != "" ]; then
-      rsync -avz -e "ssh ${ssh_opts[*]}" $exclude --delete $sourcepath $target:$remotepath  --info=ALL >> $logpath/rsync-$date.log
+     run_rsync "$sourcepath" "$remotepath"
       rsync_exit=$?
-      [ $rsync_exit -ne 0 ] && echo "ERROR: rsync failed for $sourcepath (exit $rsync_exit)" >> $logpath/rsync-$date.log
+     [ $rsync_exit -ne 0 ] && echo "ERROR: rsync failed for $sourcepath (exit $rsync_exit)" >> "$log_file"
    fi
 
   else
-      echo "rsync -avz -e \"ssh ${ssh_opts[*]}\" $exclude --delete $sourcepath $target:$remotepath --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
+     echo "rsync -avz -e \"ssh ${ssh_opts[*]}\" $exclude --delete $sourcepath $target:$remotepath --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $log_file"
   fi
 
  fi
@@ -185,13 +214,13 @@ for i in `cat $copyfiles`; do
   if [ "$active" = "true" ]; then
 
    if [ "$remotepath" != "" ] && [ "$sourcepath" != "" ] && [ -e $sourcepath ] && [ "$target" != "" ]; then
-      rsync -avz -e "ssh ${ssh_opts[*]}" $exclude --delete $sourcepath $target:$remotepath  --info=ALL >> $logpath/rsync-$date.log
+     run_rsync "$sourcepath" "$remotepath"
       rsync_exit=$?
-      [ $rsync_exit -ne 0 ] && echo "ERROR: rsync failed for $sourcepath (exit $rsync_exit)" >> $logpath/rsync-$date.log
+     [ $rsync_exit -ne 0 ] && echo "ERROR: rsync failed for $sourcepath (exit $rsync_exit)" >> "$log_file"
    fi
 
   else
-      echo "rsync -avz -e \"ssh ${ssh_opts[*]}\" $exclude --delete $sourcepath $target:$remotepath --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
+     echo "rsync -avz -e \"ssh ${ssh_opts[*]}\" $exclude --delete $sourcepath $target:$remotepath --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $log_file"
   fi
 
  fi
@@ -203,7 +232,9 @@ done
 
 end_ts=$(date +%s)
 duration=$((end_ts - start_ts))
-echo "Runtime: $(format_duration "$duration")"
-echo "Runtime: $(format_duration "$duration")" >> $logpath/rsync-$date.log
+if [ "$output_mode" = "verbose" ]; then
+   echo "Runtime: $(format_duration "$duration")"
+fi
+echo "Runtime: $(format_duration "$duration")" >> "$log_file"
 
 exit 0

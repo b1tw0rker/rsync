@@ -9,6 +9,9 @@ date=`date +%s`
 
 ### Settings
 ###
-### 
+### output_mode silent,verbose
+###
+###
 target="XXX"
-active="false"
+active="true"
+output_mode="verbose"

@@ -28,12 +28,13 @@ Start the script with running the following command on your shell:
 
 ### config.cf
 
-The main configuration file. Edit these two settings before running the script:
+The main configuration file. Edit these settings before running the script:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `target` | Hostname or IP of the backup server (SSH access required) | `XXX` |
 | `active` | `true` = run rsync, `false` = dry-run (only print commands) | `true` |
+| `output_mode` | `silent` = no rsync/runtime output on the console, `verbose` = print transferred files live on the console | `silent` |
 
 > If `target` is still set to `XXX`, the script will ask for the server name on first run and save it automatically.
 
@@ -60,6 +61,7 @@ That's it folks! Happy mirroring ;-)
 **Usability (`copyjob.sh`)**
 - Added runtime output at the end of the script and in the rsync log
 - Added SSH option `StrictHostKeyChecking=accept-new` for the connectivity check and rsync transport
+- Added `output_mode` in `config.cf` with `silent` and `verbose` for console output control
 
 ### v1.0.2 — 2026-05-08
 

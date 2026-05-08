@@ -43,5 +43,13 @@ folder.cf -> insert folders which should be copied.
 
 That's it folks! Happy mirroring ;-)
 
+## Changelog
+
+### v1.0.2 — 2026-05-08
+- `copyjob.sh`: Variable `target` umbenannt zu `remotepath` (klarere Beschreibung des Remote-Zielpfads)
+- `copyjob.sh`: Variable `local` umbenannt zu `sourcepath` (klarere Beschreibung des lokalen Quellpfads)
+- `README.md`: Shields.io Badges hinzugefügt (Version, Last Commit, Lizenz)
+- `README.md`: Lizenz von APACHE auf MIT geändert
+
 ## License
-[APACHE](https://www.apache.org/licenses/LICENSE-2.0)
+[MIT](https://opensource.org/licenses/MIT)

@@ -12,6 +12,6 @@ date=`date +%s`
 ### output_mode silent,verbose
 ###
 ###
-target="XXX"
+target="192.168.0.10"
 active="true"
 output_mode="verbose"

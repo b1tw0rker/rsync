@@ -52,6 +52,12 @@ folder.cf   ->  folders to copy (absolute paths with trailing /, one per line)
 
 > **Note:** Blank lines and comment lines starting with `#` are ignored. All paths in `files.cf` and `folder.cf` must be absolute (starting with `/`). Folder entries must end with a `/`; file entries must not. File patterns such as `/etc/cron.daily/goaccess*` are supported.
 
+> **Exclude syntax:** `exclude.cf` can mix relative rsync patterns and absolute paths in the same file. Examples: `authorized_keys`, `.cache`, `*.tmp`, `/root/.vscode-server`, `/etc/ssl/private`. Absolute entries are applied relative to the currently synced source path, so files and subfolders can be managed centrally in one exclude file.
+
+> **Negation and directory-only rules:** Prefix a line with `!` to re-include a later match. Add a trailing `/` if the rule should only match directories. Example for “exclude all hidden directories in `/root`, but keep `/root/.ssh`”: `/root/.*/` followed by `!/root/.ssh/`. Later lines take precedence, similar to `.gitignore`.
+
+> **Dry run:** When `active="false"`, the script only prints the resolved rsync commands and no longer requires a successful SSH connectivity check.
+
 That's it folks! Happy mirroring ;-)
 
 ## Changelog

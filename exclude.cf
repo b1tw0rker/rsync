@@ -1,3 +1,11 @@
+# Examples:
+# /root/.*/
+# !/root/.ssh/
+#
+# Notes:
+# ! re-includes a later match.
+# A trailing / matches directories only.
+
 Vertrag.txt
 authorized_keys
 /root/.vscode-server

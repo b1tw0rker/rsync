@@ -8,6 +8,8 @@
 ###
 ###
 
+set -u
+
 script=$(readlink -f $0)
 path=`dirname $script`
 source $path/config.cf
@@ -32,10 +34,10 @@ if [ ! -f "$excludefile" ]; then
 fi
 
 if [ ! -e "$logpath" ]; then
-   mkdir /var/log/rsync
+   mkdir -p "$logpath"
 fi
 
-if [ $target = "XXX" ]; then
+if [ "$target" = "XXX" ]; then
     printf "\n\n***********************************************\n\nAdd Your BackupServer (FQDN) to config.cf: "
     read u_srv
     sed -i 's/^target="XXX"/target="'"$u_srv"'"/' config.cf
@@ -43,6 +45,24 @@ if [ $target = "XXX" ]; then
 fi
 
 
+
+### rotate logs (delete logs older than 30 days)
+###
+###
+find "$logpath" -name "rsync-*.log" -mtime +30 -delete 2>/dev/null
+
+### check SSH connectivity
+###
+###
+if ! ssh -q -o BatchMode=yes -o ConnectTimeout=5 "$target" exit 2>/dev/null; then
+    echo "ERROR: Cannot connect to $target - aborting"
+    exit 1
+fi
+
+### initialize exclude variable
+###
+###
+exclude=""
 
 ### get exclude list
 ###
@@ -103,6 +123,8 @@ for i in `cat $copyfolder`; do
 
    if [ "$remotepath" != "" ] && [ "$sourcepath" != "" ] && [ -e $sourcepath ] && [ "$target" != "" ]; then
       rsync -avz $exclude --delete $sourcepath $target:$remotepath  --info=ALL >> $logpath/rsync-$date.log
+      rsync_exit=$?
+      [ $rsync_exit -ne 0 ] && echo "ERROR: rsync failed for $sourcepath (exit $rsync_exit)" >> $logpath/rsync-$date.log
    fi
 
   else
@@ -152,6 +174,8 @@ for i in `cat $copyfiles`; do
 
    if [ "$remotepath" != "" ] && [ "$sourcepath" != "" ] && [ -e $sourcepath ] && [ "$target" != "" ]; then
       rsync -avz $exclude --delete $sourcepath $target:$remotepath  --info=ALL >> $logpath/rsync-$date.log
+      rsync_exit=$?
+      [ $rsync_exit -ne 0 ] && echo "ERROR: rsync failed for $sourcepath (exit $rsync_exit)" >> $logpath/rsync-$date.log
    fi
 
   else

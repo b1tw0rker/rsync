@@ -1,6 +1,6 @@
 # Rsync Mirror Script
 
-![version](https://img.shields.io/badge/version-v1.0.1-green.svg) ![last commit](https://img.shields.io/github/last-commit/b1tw0rker/rsync.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![version](https://img.shields.io/badge/version-v1.0.2-green.svg) ![last commit](https://img.shields.io/github/last-commit/b1tw0rker/rsync.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 This smart little script creates a copy to a mirrorserver out of the box.
 

@@ -10,5 +10,5 @@ date=`date +%s`
 ### Settings
 ###
 ### 
-host="XXX"
+target="XXX"
 active="true"

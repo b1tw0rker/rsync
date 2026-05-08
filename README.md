@@ -1,11 +1,14 @@
 # Rsync Mirror Script
+
+![version](https://img.shields.io/badge/version-v1.0.1-green.svg) ![last commit](https://img.shields.io/github/last-commit/b1tw0rker/rsync.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 This smart little script creates a copy to a mirrorserver out of the box.
 
 ## WARNING:
 THIS SCRIPT COMES WITH ABSOLUTE NO WARRANTY,
 THIS SCRIPT IS ABSOLUTE BETA STUFF. DO NOT USE IT ON PRODUCTION SYSTEMS
 
-(C) 2021 by Dipl. Wirt.-Ing. Nick Herrmann
+(C) 2021-2026 by Dipl. Wirt.-Ing. Nick Herrmann
 
 This program is WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

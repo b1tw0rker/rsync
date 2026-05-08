@@ -90,8 +90,8 @@ for i in `cat $copyfolder`; do
   ### cut last character ( cut / )
   ###
   ###
-  target="${i%?}"
-  local=$i
+  remotepath="${i%?}"
+  sourcepath=$i
 
 
  if [ "$f" = "/" ]; then
@@ -101,12 +101,12 @@ for i in `cat $copyfolder`; do
   ###
   if [ "$active" = "true" ]; then
 
-   if [ "$target" != "" ] && [ "$local" != "" ] && [ -e $local ] && [ "$host" != "" ]; then
-      rsync -avz $exclude --delete $local $host:$target  --info=ALL >> $logpath/rsync-$date.log
+   if [ "$remotepath" != "" ] && [ "$sourcepath" != "" ] && [ -e $sourcepath ] && [ "$host" != "" ]; then
+      rsync -avz $exclude --delete $sourcepath $host:$remotepath  --info=ALL >> $logpath/rsync-$date.log
    fi
 
   else
-    echo "rsync -avz $exclude --delete $local $host:$target --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
+    echo "rsync -avz $exclude --delete $sourcepath $host:$remotepath --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
   fi
 
  fi
@@ -139,8 +139,8 @@ for i in `cat $copyfiles`; do
   ### cut last character ( cut / )
   ###
   ###
-  target=$i
-  local=$i
+  remotepath=$i
+  sourcepath=$i
 
 
  if [ "$f" = "/" ]; then
@@ -150,12 +150,12 @@ for i in `cat $copyfiles`; do
   ###
   if [ "$active" = "true" ]; then
 
-   if [ "$target" != "" ] && [ "$local" != "" ] && [ -e $local ] && [ "$host" != "" ]; then
-      rsync -avz $exclude --delete $local $host:$target  --info=ALL >> $logpath/rsync-$date.log
+   if [ "$remotepath" != "" ] && [ "$sourcepath" != "" ] && [ -e $sourcepath ] && [ "$host" != "" ]; then
+      rsync -avz $exclude --delete $sourcepath $host:$remotepath  --info=ALL >> $logpath/rsync-$date.log
    fi
 
   else
-    echo "rsync -avz $exclude --delete $local $host:$target --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
+    echo "rsync -avz $exclude --delete $sourcepath $host:$remotepath --info=COPY2,DEL2,NAME2,BACKUP2,REMOVE2,SKIP2 > $logpath/rsync-$date.log"
   fi
 
  fi

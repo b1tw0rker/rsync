@@ -1,6 +1,6 @@
 # Rsync Mirror Script
 
-![version](https://img.shields.io/badge/version-v1.0.2-green.svg) ![last commit](https://img.shields.io/github/last-commit/b1tw0rker/rsync.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![version](https://img.shields.io/badge/version-v1.0.3-green.svg) ![last commit](https://img.shields.io/github/last-commit/b1tw0rker/rsync.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 This smart little script creates a copy to a mirrorserver out of the box.
 
@@ -37,6 +37,8 @@ The main configuration file. Edit these two settings before running the script:
 
 > If `target` is still set to `XXX`, the script will ask for the server name on first run and save it automatically.
 
+> On the first SSH connection, new host keys are accepted automatically via `StrictHostKeyChecking=accept-new`. Changed host keys are still rejected.
+
 ### Config files
 
 Change the config files: exclude.cf, files.cf, folder.cf to your personal needs
@@ -52,6 +54,12 @@ folder.cf   ->  folders to copy (absolute paths with trailing /, one per line)
 That's it folks! Happy mirroring ;-)
 
 ## Changelog
+
+### v1.0.3 — 2026-05-08
+
+**Usability (`copyjob.sh`)**
+- Added runtime output at the end of the script and in the rsync log
+- Added SSH option `StrictHostKeyChecking=accept-new` for the connectivity check and rsync transport
 
 ### v1.0.2 — 2026-05-08
 

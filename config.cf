@@ -11,4 +11,4 @@ date=`date +%s`
 ###
 ### 
 target="XXX"
-active="true"
+active="false"

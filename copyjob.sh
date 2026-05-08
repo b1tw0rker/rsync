@@ -1,8 +1,8 @@
 #!/bin/bash
 
-### Version: 1.0.1
-### Build date: 11.05.2021
-### (C) 2021 by Dipl. Wirt.-Ing. Nick Herrmann
+### Version: 1.0.2
+### Build date: 08.05.2026
+### (C) 2021-2026 by Dipl. Wirt.-Ing. Nick Herrmann
 ### This program is WITHOUT ANY WARRANTY; without even the implied warranty of
 ### MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ###

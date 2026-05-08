@@ -4,4 +4,4 @@
 /etc/passwd
 /etc/shadow
 /etc/pam.d/vsftpd
-/etc/cron.daily/webalizer*
+/etc/cron.daily/goaccess*

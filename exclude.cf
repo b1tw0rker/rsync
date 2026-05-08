@@ -1,2 +1,6 @@
 Vertrag.txt
 authorized_keys
+/root/.vscode-server
+/root/.npm
+/root/.n8n
+/root/.cache

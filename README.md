@@ -50,7 +50,7 @@ files.cf    ->  files to copy (absolute paths, one per line)
 folder.cf   ->  folders to copy (absolute paths with trailing /, one per line)
 ```
 
-> **Note:** All paths must be absolute (starting with `/`). Folders must end with a `/`.
+> **Note:** Blank lines and comment lines starting with `#` are ignored. All paths in `files.cf` and `folder.cf` must be absolute (starting with `/`). Folder entries must end with a `/`; file entries must not. File patterns such as `/etc/cron.daily/goaccess*` are supported.
 
 That's it folks! Happy mirroring ;-)
 

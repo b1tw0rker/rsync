@@ -3,6 +3,7 @@
 /root/
 /var/spool/mail/
 /var/spool/cron/
+/var/log/virtualx/
 /etc/vsftpd/
 /etc/postfix/
 /etc/dovecot/

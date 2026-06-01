@@ -511,6 +511,9 @@ build_excludes() {
 
       exclude_entries+=("$entry")
    done < "$excludefile"
+
+   # Never transfer this job's local configuration, even when /etc/bitworker/ is synced.
+   exclude_entries+=("$config_file")
 }
 
 check_ssh_connectivity() {

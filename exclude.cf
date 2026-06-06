@@ -10,3 +10,4 @@ authorized_keys
 /root/.*/
 !/root/.ssh/
 /etc/fstab
+/etc/default/grub

@@ -8,6 +8,6 @@
 
 authorized_keys
 /root/.*/
-!/root/.ssh/
+/root/.ssh/
 /etc/fstab
 /etc/default/grub

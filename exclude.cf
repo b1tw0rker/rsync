@@ -11,3 +11,4 @@ authorized_keys
 /root/.ssh/
 /etc/fstab
 /etc/default/grub
+/etc/bitworker/borg

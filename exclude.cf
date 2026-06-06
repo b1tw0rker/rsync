@@ -6,7 +6,7 @@
 # ! re-includes a later match.
 # A trailing / matches directories only.
 
-Vertrag.txt
 authorized_keys
 /root/.*/
 !/root/.ssh/
+/etc/fstab

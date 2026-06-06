@@ -36,4 +36,3 @@ authorized_keys
 /etc/postfix/master.cf
 /etc/dovecot/dovecot.conf
 /etc/bitworker/borg
-~

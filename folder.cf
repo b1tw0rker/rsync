@@ -8,6 +8,7 @@
 /etc/dovecot/
 /etc/fail2ban/
 /etc/httpd/conf/
+/etc/httpd/virtualx.d/
 /etc/letsencrypt/
 /etc/bitworker/
 /etc/php-fpm.d/

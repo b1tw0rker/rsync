@@ -15,7 +15,11 @@
 /etc/sudoers.d/
 /etc/tripwire/
 /etc/systemd/system/
-/etc/cron.*
+/etc/cron.d/
+/etc/cron.daily/
+/etc/cron.hourly/
+/etc/cron.monthly/
+/etc/cron.weekly/
 /etc/logrotate.d/
 /etc/yum.repos.d/
 /etc/php-fpm.d/

@@ -1,7 +1,14 @@
 /etc/motd
 /etc/crontab
 /etc/passwd
+/etc/group
 /etc/shadow
+/etc/gshadow
+/etc/sudoers
+/etc/aliases
+/etc/fstab
+/etc/hosts
+/etc/resolv.conf
 /etc/pam.d/vsftpd
 /etc/cron.daily/goaccess*
 /etc/my.cnf.d/99-bw-performance.cnf

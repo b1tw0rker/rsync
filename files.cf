@@ -4,3 +4,4 @@
 /etc/shadow
 /etc/pam.d/vsftpd
 /etc/cron.daily/goaccess*
+/etc/my.cnf.d/99-bw-performance.cnf

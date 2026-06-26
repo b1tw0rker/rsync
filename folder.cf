@@ -13,6 +13,7 @@
 /etc/bitworker/
 /etc/ssh/
 /etc/sudoers.d/
+/etc/skel/
 /etc/tripwire/
 /etc/systemd/system/
 /etc/cron.d/

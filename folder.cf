@@ -19,7 +19,6 @@
 /etc/cron.d/
 /etc/logrotate.d/
 /etc/yum.repos.d/
-/etc/dnf/
 /etc/php-fpm.d/
 /etc/goaccess/
 /usr/local/bin/

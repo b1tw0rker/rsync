@@ -14,4 +14,4 @@ date=`date +%s`
 ###
 target="XXX"
 active="false"
-output_mode="verbose"
+output_mode="silent"

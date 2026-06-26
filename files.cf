@@ -12,3 +12,4 @@
 /etc/pam.d/vsftpd
 /etc/cron.daily/goaccess*
 /etc/my.cnf.d/99-bw-performance.cnf
+/etc/httpd/conf.d/welcome.conf

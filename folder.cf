@@ -21,6 +21,4 @@
 /etc/yum.repos.d/
 /etc/php-fpm.d/
 /etc/goaccess/
-/usr/local/bin/
-/usr/local/sbin/
 /opt/

@@ -3,6 +3,7 @@
 /var/spool/mail/
 /var/spool/cron/
 /var/log/virtualx/
+/var/www/
 /etc/vsftpd/
 /etc/postfix/
 /etc/dovecot/
@@ -11,5 +12,17 @@
 /etc/httpd/virtualx.d/
 /etc/letsencrypt/
 /etc/bitworker/
+/etc/ssh/
+/etc/sudoers.d/
+/etc/security/
+/etc/tripwire/
+/etc/systemd/system/
+/etc/cron.d/
+/etc/logrotate.d/
+/etc/yum.repos.d/
+/etc/dnf/
 /etc/php-fpm.d/
 /etc/goaccess/
+/usr/local/bin/
+/usr/local/sbin/
+/opt/

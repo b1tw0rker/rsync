@@ -1,7 +1,7 @@
 #!/bin/bash
 
-### Version: 1.0.3
-### Build date: 08.05.2026
+### Version: 1.0.5
+### Build date: 04.07.2026
 ### (C) 2021-2026 by Dipl. Wirt.-Ing. Nick Herrmann
 ### This program is WITHOUT ANY WARRANTY; without even the implied warranty of
 ### MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -19,6 +19,7 @@ source "$config_file"
 start_ts=$(date +%s)
 ssh_opts=(-o StrictHostKeyChecking=accept-new -o ConnectTimeout=5)
 output_mode="${output_mode:-silent}"
+shutdown="${shutdown:-false}"
 exclude_entries=()
 had_errors=0
 
@@ -78,6 +79,15 @@ validate_settings() {
          ;;
       *)
          echo "ERROR: active must be true or false in $config_file" >&2
+         exit 1
+         ;;
+   esac
+
+   case "$shutdown" in
+      true|false)
+         ;;
+      *)
+         echo "ERROR: shutdown must be true or false in $config_file" >&2
          exit 1
          ;;
    esac
@@ -565,4 +575,15 @@ if [ ! -f "$copyfolder" ]; then
 fi
 
 main
+
+
+
+###
+###
+###
+if [ "$shutdown" = "true" ]; then
+   sleep 5
+   ssh root@$target "shutdown -h now"
+fi
+
 exit $?
